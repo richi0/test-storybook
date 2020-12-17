@@ -12,11 +12,21 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  label: 'Button',
+  label: 'Primary',
+  mode: 'primary',
+  onClick: () => console.log('aaa'),
 }
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-  label: 'Richie',
+  label: 'Secondary',
+  mode: 'secondary',
+  onClick: () => console.log('aaa'),
+}
+
+export const Inactive = Template.bind({})
+Inactive.args = {
+  label: 'Inactive',
+  mode: 'inactive',
   onClick: () => console.log('aaa'),
 }

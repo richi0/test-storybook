@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({brand, link}) => {
   return (
       <div className="bg-yellow-400">
           <h1 className="bg-red-500">{brand}</h1>
-          <p>test11</p>
+          <p className="text-5xl">test11</p>
           {link.map((link, key) => <p key={key}>{link}</p>)}
       </div>
   )
