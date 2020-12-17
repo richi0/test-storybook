@@ -14,7 +14,7 @@ export const Primary = Template.bind({})
 Primary.args = {
   label: 'Primary',
   mode: 'primary',
-  onClick: () => console.log('aaa'),
+  onClick: () => console.log("aaa"),
 }
 
 export const Secondary = Template.bind({})

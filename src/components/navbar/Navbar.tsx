@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link, LinkProps } from '../link/Link'
+import BurgerMenu from '../burgerMenu'
 import './Navbar.css'
 
 export interface NavbarProps {
@@ -9,18 +11,32 @@ export interface NavbarProps {
   /**
    * Navigation links
    */
-  link: string[]
+  link: LinkProps[]
   /**
    * What background color to use
    */
 }
 
-export const Navbar: React.FC<NavbarProps> = ({brand, link}) => {
+export const Navbar: React.FC<NavbarProps> = ({ brand, link }) => {
+  const [showMobileNav, setMobileNav] = useState(false)
+
+  const clickBurger = () => {
+    setMobileNav(showMobileNav ? false : true)
+  }
+
   return (
-      <div className="bg-yellow-400">
-          <h1 className="bg-red-500">{brand}</h1>
-          <p className="text-5xl">test11</p>
-          {link.map((link, key) => <p key={key}>{link}</p>)}
+    <div className="bg-gray-200 flex flex-row gap-5 p-3 items-center">
+      <div className="text-3xl">{brand}</div>
+      <div className="mr-auto"></div>
+      {link.map((link, key) => (
+        <div className="hidden sm:block" key={key}>
+          <Link text={link.text} href={link.href} />
+        </div>
+      ))}
+      <div className="sm:hidden flex items-center">
+        <BurgerMenu onClick={() => clickBurger()} />
       </div>
+      <div className={showMobileNav ? '' : 'hidden'}>asdadad</div>
+    </div>
   )
 }

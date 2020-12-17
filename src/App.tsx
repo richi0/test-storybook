@@ -8,9 +8,9 @@ class App extends React.Component<{}> {
     return (
       <div className="mt-5 mx-10">
         <div className="text-center">
-          <Navbar brand="hello" link={['yes', 'no']} />
+          <Navbar brand="hello" link={[{href: "asda", text:"sadasd"}]} />
         </div>
-        <Button label="test1" onClick={() => null} mode="secondary"/>
+        <Button label="test1" onClick={() => console.log("asdas")} mode="secondary"/>
       </div>
     )
   }
