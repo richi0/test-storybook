@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { BurgerMenu, BurgerMenuProps } from './BurgerMenu'
 
 export default {
-  title: 'Components/Burger',
+  title: 'Components/Navigation',
   component: BurgerMenu,
 } as Meta
 

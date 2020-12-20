@@ -18,7 +18,7 @@ export const Link: React.FC<LinkProps> = ({ href, text }) => {
       href={href}
       className="text-xl text-blue-600 hover:text-blue-900 duration-500 visited:text-purple-600 active:text-black"
     >
-      {text}
+      {text.toUpperCase()}
     </a>
   )
 }

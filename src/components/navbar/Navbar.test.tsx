@@ -3,8 +3,10 @@ import { Navbar } from './Navbar'
 
 test('renders button label', () => {
   render(
-    <Navbar brand="richie" link={[{href:"www.test1.com", text:"test1"}]} />,
+    <Navbar
+      brand="richie"
+      links={[{ href: 'www.test1.com', text: 'test1' }]}
+    />,
   )
-  const link = screen.getByText("test1")
-  expect(link).toBeInTheDocument()
+  screen.findByText('test1').then((link) => expect(link).toBeInTheDocument())
 })
