@@ -26,7 +26,7 @@ export const Mobilenav: React.FC<MobilenavProps> = ({
 
   useEffect(() => {
     if (show) {
-      setStyle({ top: '0px' })
+      setTimeout(() => setStyle({ top: '0px' }), 1000)
     } else {
       setStyle({ top: '-100%' })
     }
@@ -35,11 +35,11 @@ export const Mobilenav: React.FC<MobilenavProps> = ({
   return (
     <div
       style={style}
-      className={`w-full z-50 bg-white absolute top-0 left-0 duration-700`}
+      className={`w-full z-50 bg-gray-100 absolute top-0 left-0 duration-700`}
     >
       <div className="w-full text-right">
         <button
-          className="text-5xl m-4"
+          className="text-5xl m-4 focus:outline-none"
           onClick={toggleShowMenu}
         >
           <svg

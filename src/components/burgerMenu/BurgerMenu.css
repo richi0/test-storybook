@@ -1,0 +1,11 @@
+.burger {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(180deg);
+  }
+}

@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ brand, links }) => {
           <Link text={link.text} href={link.href} />
         </div>
       ))}
-      <div className="sm:hidden flex items-center">
+      <div className="sm:hidden">
         <BurgerMenu onClick={() => clickBurger()} />
       </div>
       <Mobilenav
