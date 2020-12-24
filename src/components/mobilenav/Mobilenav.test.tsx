@@ -10,6 +10,7 @@ test('renders button label', () => {
         { href: 'hello', text: 'yes' },
         { href: 'hello', text: 'yes' },
       ]}
+      toggleShowMenu={() => console.log("aa")}
     />,
   )
   screen.findByText('hello').then((text) => expect(text).toBeInTheDocument())

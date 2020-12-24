@@ -26,7 +26,7 @@ export const Mobilenav: React.FC<MobilenavProps> = ({
 
   useEffect(() => {
     if (show) {
-      setTimeout(() => setStyle({ top: '0px' }), 1000)
+      setStyle({ top: '0px' })
     } else {
       setStyle({ top: '-100%' })
     }
@@ -48,7 +48,7 @@ export const Mobilenav: React.FC<MobilenavProps> = ({
             height="50"
             viewBox="-25 -25 50 50"
           >
-            <circle cx="0" cy="0" r="20" stroke="gray" fill="white" />
+            <circle cx="0" cy="0" r="20" stroke="gray" fill="#F3F4F6" />
             <line x1="-10" y1="-10" x2="10" y2="10" stroke="gray" />
             <line x1="-10" y1="10" x2="10" y2="-10" stroke="gray" />
           </svg>

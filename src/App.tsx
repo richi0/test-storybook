@@ -1,5 +1,5 @@
 import React from 'react'
-
+import logo from './static/images/logo.svg'
 import Navbar from './components/navbar'
 import Button from './components/button'
 
@@ -8,7 +8,7 @@ class App extends React.Component<{}> {
     return (
       <div className="mt-5 mx-10">
         <div className="text-center">
-          <Navbar brand="hello" links={[{ href: 'asda', text: 'sadasd' }]} />
+          <Navbar brand="hello" links={[{ href: 'asda', text: 'sadasd' }]} logo={logo}/>
         </div>
         <Button
           label="test1"

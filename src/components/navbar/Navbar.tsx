@@ -6,6 +6,10 @@ import './Navbar.css'
 
 export interface NavbarProps {
   /**
+   * Path company logo
+   */
+  logo: string
+  /**
    * Brand name
    */
   brand: string
@@ -15,7 +19,7 @@ export interface NavbarProps {
   links: LinkProps[]
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ brand, links }) => {
+export const Navbar: React.FC<NavbarProps> = ({ logo, brand, links }) => {
   const [showMobileNav, setMobileNav] = useState(false)
 
   const clickBurger = () => {
@@ -24,8 +28,10 @@ export const Navbar: React.FC<NavbarProps> = ({ brand, links }) => {
 
   return (
     <div className="bg-gray-200 flex flex-row gap-5 p-3 items-center">
-      <div className="text-3xl">{brand}</div>
-      <div className="mr-auto"></div>
+      <a href="\">
+        <img className="w-10 bg-none" src={logo} alt="logo" />
+      </a>
+      <div className="text-lg sm:text-3xl mr-auto">{brand}</div>
       {links.map((link, key) => (
         <div className="hidden sm:block" key={key}>
           <Link text={link.text} href={link.href} />

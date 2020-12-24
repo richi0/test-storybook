@@ -1,5 +1,6 @@
 import React from 'react'
 import './Button.css'
+import { PRIMARY, SECONDARY } from '../../globals'
 
 export interface ButtonProps {
   /**
@@ -17,20 +18,28 @@ export interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({ label, onClick, mode }) => {
-  const BASE_STYLE: string =
-    'rounded-lg p-3 duration-500 shadow-lg focus:outline-none focus:ring focus:ring-offset-2'
   let COLOR: string = ''
   if (mode === 'primary' || mode === undefined) {
-    COLOR = 'green'
+    COLOR = PRIMARY().split('-')[0]
   } else if (mode === 'secondary') {
-    COLOR = 'yellow'
+    COLOR = SECONDARY().split('-')[0]
   } else if (mode === 'inactive') {
     COLOR = 'gray'
   }
-  const STYLE = `${BASE_STYLE} bg-${COLOR}-400 hover:bg-${COLOR}-600 focus:ring-${COLOR}-600`
+  const BASE_STYLE: string = `bg-${COLOR}-600 rounded-lg p-3 shadow-lg\
+                              focus:outline-none focus:ring focus:ring-offset-2\
+                              focus:ring-${COLOR}-400`
+  const HOVER_STYLE: string = `transition duration-500 transform\
+                              hover:-translate-y-1 hover:shadow-xl\
+                              hover:bg-${COLOR}-400`
+  const STYLE = `${BASE_STYLE} ${mode === 'inactive' ? '' : HOVER_STYLE}`
   return (
-    <button className={STYLE} onClick={onClick}>
-      {label}
+    <button
+      className={STYLE}
+      onClick={onClick}
+      disabled={mode === 'inactive' ? true : false}
+    >
+      <b>{label}</b>
     </button>
   )
 }

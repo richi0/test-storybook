@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react'
+import { defaultMaxListeners } from 'stream'
 import { BurgerMenu } from './BurgerMenu'
 
 test('renders button label', () => {
@@ -6,3 +7,4 @@ test('renders button label', () => {
   const svg = container.querySelector('svg')
   expect(svg).toBeInTheDocument()
 })
+
