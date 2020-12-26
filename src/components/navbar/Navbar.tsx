@@ -34,7 +34,11 @@ export const Navbar: React.FC<NavbarProps> = ({ logo, brand, links }) => {
       <div className="text-lg sm:text-3xl mr-auto">{brand}</div>
       {links.map((link, key) => (
         <div className="hidden sm:block" key={key}>
-          <Link text={link.text} href={link.href} />
+          <Link
+            text={link.text}
+            href={link.href}
+            active={link.active ? true : false}
+          />
         </div>
       ))}
       <div className="sm:hidden">

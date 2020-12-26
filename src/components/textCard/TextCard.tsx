@@ -34,8 +34,12 @@ export const TextCard: React.FC<TextCardProps> = ({
         href ? hover : ''
       }`}
     >
-      <div className={`text-${PRIMARY()} text-3xl mb-10 underline`}>{title}</div>
-      {img ? <img className="mb-3" src={img} /> : null}
+      <div className={`text-${PRIMARY()} text-3xl mb-10 underline`}>
+        {title}
+      </div>
+      {img ? (
+          <img className="mb-3 mx-auto" src={img} alt=""/>
+      ) : null}
       <div>{body}</div>
     </div>
   )

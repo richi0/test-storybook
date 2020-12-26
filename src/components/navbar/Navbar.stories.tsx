@@ -27,7 +27,7 @@ Navbar_2.args = {
   links: [
     { href: '/', text: 'Products' },
     { href: '/', text: 'Projects' },
-    { href: '/', text: 'Team' },
+    { href: '/', text: 'Team', active: true},
     { href: '/', text: 'Contact' },
     { href: '/', text: 'About' },
   ],

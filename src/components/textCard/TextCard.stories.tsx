@@ -2,6 +2,7 @@ import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import { TextCard, TextCardProps } from './TextCard'
 import img from '../../static/images/cat1.jpg'
+import small_img from '../../static/images/small_img.png'
 
 export default {
   title: 'Components/Cards',
@@ -38,5 +39,13 @@ CardWithImage.args = {
   title: title,
   body: body,
   img: img,
+  href: '/',
+}
+
+export const CardWithSmallImage = Template.bind({})
+CardWithSmallImage.args = {
+  title: title,
+  body: body,
+  img: small_img,
   href: '/',
 }
