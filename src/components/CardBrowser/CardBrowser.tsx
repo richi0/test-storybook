@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './CardBrowser.css'
 import { PRIMARY } from '../../globals'
 
@@ -12,7 +12,7 @@ export interface CardBrowserProps {
 export const CardBrowser: React.FC<CardBrowserProps> = ({ cards }) => {
   const [cardNumber, setCardNumber] = useState(0)
 
-  const changeCard = (n: number) => {
+  const changeCard = async (n: number) => {
     if (n === 1 && cardNumber < cards.length - 1) {
       setCardNumber(cardNumber + 1)
     }
@@ -21,13 +21,23 @@ export const CardBrowser: React.FC<CardBrowserProps> = ({ cards }) => {
     }
   }
 
+  useEffect(() => {
+      window.location.href=`#card-${cardNumber}`
+  }, [cardNumber])
+
   return (
     <div>
       <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-5">
         {cards.map((card) => card)}
       </div>
       <div className="sm:hidden">
-        <div className="flex flex-wrap justify-center content-center">{cards[cardNumber]}</div>
+        <div className="flex content-center cc-CardBrowser">
+          {cards.map((card, index) => (
+            <div id={`card-${index}`} className="min-w-full flex flex-wrap justify-center content-center cc-CardBrowserAnchor">
+              {card}
+            </div>
+          ))}
+        </div>
         <div className="flex flex-wrap justify-between content-center mt-8">
           <button
             className={`focus:outline-none transition duration-500 transform  ${
