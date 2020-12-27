@@ -13,7 +13,7 @@ import img7 from '../../static/images/p7.jpg'
 import img8 from '../../static/images/p8.jpg'
 
 export default {
-  title: 'Components/cards',
+  title: 'Components/Card Browser',
   component: CardBrowser,
 } as Meta
 

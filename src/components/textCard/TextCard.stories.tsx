@@ -5,7 +5,7 @@ import img from '../../static/images/cat1.jpg'
 import small_img from '../../static/images/small_img.png'
 
 export default {
-  title: 'Components/Cards',
+  title: 'Components/Text Card',
   component: TextCard,
 } as Meta
 

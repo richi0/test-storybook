@@ -5,7 +5,7 @@ import img1 from '../../static/images/p1.jpg'
 import img2 from '../../static/images/p5.jpg'
 
 export default {
-  title: 'Components/cards',
+  title: 'Components/Image Card',
   component: ImageCard,
 } as Meta
 
