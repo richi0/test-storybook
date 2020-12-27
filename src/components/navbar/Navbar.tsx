@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ logo, brand, links }) => {
 
   return (
     <div className="bg-gray-200 flex flex-row gap-5 p-3 items-center">
-      <a href="\">
+      <a href="/">
         <img className="w-10 bg-none" src={logo} alt="logo" />
       </a>
       <div className="text-lg sm:text-3xl mr-auto">{brand}</div>

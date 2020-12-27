@@ -22,18 +22,27 @@ export const CardBrowser: React.FC<CardBrowserProps> = ({ cards }) => {
   }
 
   useEffect(() => {
-      window.location.href=`#card-${cardNumber}`
+    //let y = window.scrollY
+    //let x = window.scrollX
+    window.location.href = `#card-${cardNumber}`
+    //window.scrollTo(x, y)
   }, [cardNumber])
 
   return (
     <div>
       <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-5">
-        {cards.map((card) => card)}
+        {cards.map((card, key) => (
+          <div key={key}>{card}</div>
+        ))}
       </div>
       <div className="sm:hidden">
         <div className="flex content-center cc-CardBrowser">
           {cards.map((card, index) => (
-            <div id={`card-${index}`} className="min-w-full flex flex-wrap justify-center content-center cc-CardBrowserAnchor">
+            <div
+              id={`card-${index}`}
+              key={index}
+              className="min-w-full flex flex-wrap justify-center content-center cc-CardBrowserAnchor"
+            >
               {card}
             </div>
           ))}
