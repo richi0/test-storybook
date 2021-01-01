@@ -1,9 +1,7 @@
 .cc-CardBrowser {
-  scroll-behavior: smooth;
   overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  gap: 200%;
 }
 
 .cc-CardBrowser::-webkit-scrollbar {

@@ -22,7 +22,7 @@ const cards = images.map((img) => (
 class App extends React.Component<{}> {
   render() {
     return (
-      <div className="mt-5 mx-10">
+      <div>
         <div className="text-center">
           <Navbar
             brand="hello"

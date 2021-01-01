@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './CardBrowser.css'
 import { PRIMARY } from '../../globals'
 
@@ -9,90 +9,138 @@ export interface CardBrowserProps {
   cards: React.ReactNode[]
 }
 
-export const CardBrowser: React.FC<CardBrowserProps> = ({ cards }) => {
-  const [cardNumber, setCardNumber] = useState(0)
+interface CradBrowserState {
+  cardNumber: number
+  pos: number
+}
 
-  const changeCard = async (n: number) => {
-    if (n === 1 && cardNumber < cards.length - 1) {
-      setCardNumber(cardNumber + 1)
+export class CardBrowser extends React.Component<
+  CardBrowserProps,
+  CradBrowserState
+> {
+  state: CradBrowserState = {
+    cardNumber: 0,
+    pos: 0,
+  }
+  changeCard(n: number) {
+    if (n === 1 && this.state.cardNumber < this.props.cards.length - 1) {
+      this.setState({ cardNumber: this.state.cardNumber + 1 }, () => {
+        this.moveCard(1)
+        console.log(this.state.cardNumber, this.state.pos)
+      })
     }
-    if (n === -1 && cardNumber > 0) {
-      setCardNumber(cardNumber - 1)
+    if (n === -1 && this.state.cardNumber > 0) {
+      this.setState({ cardNumber: this.state.cardNumber - 1 }, () =>
+        this.moveCard(-1),
+      )
     }
   }
 
-  useEffect(() => {
-    //let y = window.scrollY
-    //let x = window.scrollX
-    window.location.href = `#card-${cardNumber}`
-    //window.scrollTo(x, y)
-  }, [cardNumber])
+  sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
 
-  return (
-    <div>
-      <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-5">
-        {cards.map((card, key) => (
-          <div key={key}>{card}</div>
-        ))}
-      </div>
-      <div className="sm:hidden">
-        <div className="flex content-center cc-CardBrowser">
-          {cards.map((card, index) => (
-            <div
-              id={`card-${index}`}
-              key={index}
-              className="min-w-full flex flex-wrap justify-center content-center cc-CardBrowserAnchor"
-            >
-              {card}
-            </div>
+  moveCard(n: number) {
+    if (this.props.cards.length > 1) {
+      let browser = document.getElementById('card-browser')
+      let card_0 = document.getElementById('card-0')
+      let card_1 = document.getElementById('card-1')
+      if (card_0 && card_1) {
+        let diff = Math.abs(
+          card_0.getBoundingClientRect().left -
+            card_1.getBoundingClientRect().left,
+        )
+        const time = 500
+        ;(async () => {
+          for (let i = 0; i < 100; i++) {
+            await this.sleep(time / 100).then(() => {
+              if (browser) {
+                browser.style.left = `-${
+                  this.state.pos + (diff / 100) * i * n
+                }px`
+              }
+            })
+          }
+        })().then(() =>
+          this.setState({ pos: diff * this.state.cardNumber }, () =>
+            console.log(this.state.pos),
+          ),
+        )
+      }
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-5 relative">
+          {this.props.cards.map((card, key) => (
+            <div key={key}>{card}</div>
           ))}
         </div>
-        <div className="flex flex-wrap justify-between content-center mt-8">
-          <button
-            className={`focus:outline-none transition duration-500 transform  ${
-              cardNumber === 0 ? '' : 'hover:-translate-x-2'
-            }`}
-            onClick={() => changeCard(-1)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
-              viewBox="-25 -25 50 50"
-              className={`text-black stroke-current  ${
-                cardNumber === 0 ? 'text-gray-300' : `hover:text-${PRIMARY()}`
+        <div className="sm:hidden cc-CardBrowser">
+          <div id="card-browser" className="flex content-center relative gap-20">
+            {this.props.cards.map((card, index) => (
+              <div
+                id={`card-${index}`}
+                key={index}
+                className="min-w-full flex flex-wrap justify-center content-center"
+              >
+                {card}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-between content-center mt-8">
+            <button
+              className={`focus:outline-none transition duration-500 transform  ${
+                this.state.cardNumber === 0 ? '' : 'hover:-translate-x-2'
               }`}
+              onClick={() => this.changeCard(-1)}
             >
-              <line x1="-10" y1="0" x2="10" y2="-20" />
-              <line x1="-10" y1="0" x2="10" y2="20" />
-            </svg>
-          </button>
-          <div className="flex flex-wrap justify-center content-center">{`${
-            cardNumber + 1
-          } of ${cards.length}`}</div>
-          <button
-            className={`focus:outline-none transition duration-500 transform  ${
-              cards.length - 1 === cardNumber ? '' : 'hover:translate-x-2'
-            }`}
-            onClick={() => changeCard(1)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
-              viewBox="-25 -25 50 50"
-              className={`text-black stroke-current  ${
-                cards.length - 1 === cardNumber
-                  ? 'text-gray-300'
-                  : `hover:text-${PRIMARY()}`
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="-25 -25 50 50"
+                className={`text-black stroke-current  ${
+                  this.state.cardNumber === 0
+                    ? 'text-gray-300'
+                    : `hover:text-${PRIMARY()}`
+                }`}
+              >
+                <line x1="-10" y1="0" x2="10" y2="-20" />
+                <line x1="-10" y1="0" x2="10" y2="20" />
+              </svg>
+            </button>
+            <div className="flex flex-wrap justify-center content-center">{`${
+              this.state.cardNumber + 1
+            } of ${this.props.cards.length}`}</div>
+            <button
+              className={`focus:outline-none transition duration-500 transform  ${
+                this.props.cards.length - 1 === this.state.cardNumber
+                  ? ''
+                  : 'hover:translate-x-2'
               }`}
+              onClick={() => this.changeCard(1)}
             >
-              <line x1="10" y1="0" x2="-10" y2="-20" />
-              <line x1="10" y1="0" x2="-10" y2="20" />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="-25 -25 50 50"
+                className={`text-black stroke-current  ${
+                  this.props.cards.length - 1 === this.state.cardNumber
+                    ? 'text-gray-300'
+                    : `hover:text-${PRIMARY()}`
+                }`}
+              >
+                <line x1="10" y1="0" x2="-10" y2="-20" />
+                <line x1="10" y1="0" x2="-10" y2="20" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
