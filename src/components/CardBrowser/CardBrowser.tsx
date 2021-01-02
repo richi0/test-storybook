@@ -22,11 +22,14 @@ export class CardBrowser extends React.Component<
     cardNumber: 0,
     pos: 0,
   }
+
+  browserRef = React.createRef<HTMLDivElement>();
+  cardRef = this.props.cards.map(() => React.createRef<HTMLDivElement>())
+
   changeCard(n: number) {
     if (n === 1 && this.state.cardNumber < this.props.cards.length - 1) {
       this.setState({ cardNumber: this.state.cardNumber + 1 }, () => {
         this.moveCard(1)
-        console.log(this.state.cardNumber, this.state.pos)
       })
     }
     if (n === -1 && this.state.cardNumber > 0) {
@@ -36,40 +39,20 @@ export class CardBrowser extends React.Component<
     }
   }
 
-  sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
-  }
-
   moveCard(n: number) {
     if (this.props.cards.length > 1) {
-      let browser = document.getElementById('card-browser')
-      let card_0 = document.getElementById('card-0')
-      let card_1 = document.getElementById('card-1')
+      let browser = this.browserRef.current
+      let card_0 = this.cardRef[0].current
+      let card_1 = this.cardRef[1].current
       if (card_0 && card_1 && browser) {
         let diff = Math.abs(
           card_0.getBoundingClientRect().left -
             card_1.getBoundingClientRect().left,
         )
-        browser.style.transform = `translate(${this.state.pos - diff*n}px, 0px)`
+        browser.style.transform = `translate(${
+          this.state.pos - diff * n
+        }px, 0px)`
         this.setState({ pos: -(diff * this.state.cardNumber) })
-        /*
-        const time = 500
-        ;(async () => {
-          for (let i = 0; i < 100; i++) {
-            await this.sleep(time / 100).then(() => {
-              if (browser) {
-                browser.style.left = `-${
-                  this.state.pos + (diff / 100) * i * n
-                }px`
-              }
-            })
-          }
-        })().then(() =>
-          this.setState({ pos: diff * this.state.cardNumber }, () =>
-            console.log(this.state.pos),
-          ),
-        )
-        */
       }
     }
   }
@@ -83,12 +66,17 @@ export class CardBrowser extends React.Component<
           ))}
         </div>
         <div className="sm:hidden cc-CardBrowser">
-          <div id="card-browser" className="flex content-center relative gap-20 duration-500 transform">
+          <div
+            id="card-browser"
+            className="flex content-center relative gap-20 duration-500 transform"
+            ref={this.browserRef}
+          >
             {this.props.cards.map((card, index) => (
               <div
                 id={`card-${index}`}
                 key={index}
                 className="min-w-full flex flex-wrap justify-center content-center"
+                ref={this.cardRef[index]}
               >
                 {card}
               </div>
