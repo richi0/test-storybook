@@ -45,11 +45,14 @@ export class CardBrowser extends React.Component<
       let browser = document.getElementById('card-browser')
       let card_0 = document.getElementById('card-0')
       let card_1 = document.getElementById('card-1')
-      if (card_0 && card_1) {
+      if (card_0 && card_1 && browser) {
         let diff = Math.abs(
           card_0.getBoundingClientRect().left -
             card_1.getBoundingClientRect().left,
         )
+        browser.style.transform = `translate(${this.state.pos - diff*n}px, 0px)`
+        this.setState({ pos: -(diff * this.state.cardNumber) })
+        /*
         const time = 500
         ;(async () => {
           for (let i = 0; i < 100; i++) {
@@ -66,6 +69,7 @@ export class CardBrowser extends React.Component<
             console.log(this.state.pos),
           ),
         )
+        */
       }
     }
   }
@@ -79,7 +83,7 @@ export class CardBrowser extends React.Component<
           ))}
         </div>
         <div className="sm:hidden cc-CardBrowser">
-          <div id="card-browser" className="flex content-center relative gap-20">
+          <div id="card-browser" className="flex content-center relative gap-20 duration-500 transform">
             {this.props.cards.map((card, index) => (
               <div
                 id={`card-${index}`}
