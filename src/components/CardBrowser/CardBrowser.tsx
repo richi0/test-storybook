@@ -1,5 +1,5 @@
 import React from 'react'
-import './CardBrowser.css'
+import styles from './CardBrowser.module.css'
 import { PRIMARY } from '../../globals'
 
 export interface CardBrowserProps {
@@ -65,15 +65,13 @@ export class CardBrowser extends React.Component<
             <div key={key}>{card}</div>
           ))}
         </div>
-        <div className="sm:hidden cc-CardBrowser">
+        <div className={`sm:hidden ${styles.browser}`}>
           <div
-            id="card-browser"
             className="flex content-center relative gap-20 duration-500 transform"
             ref={this.browserRef}
           >
             {this.props.cards.map((card, index) => (
               <div
-                id={`card-${index}`}
                 key={index}
                 className="min-w-full flex flex-wrap justify-center content-center"
                 ref={this.cardRef[index]}

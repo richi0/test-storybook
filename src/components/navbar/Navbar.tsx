@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, LinkProps } from '../link/Link'
 import BurgerMenu from '../burgerMenu'
 import Mobilenav from '../mobilenav'
-import './Navbar.css'
 
 export interface NavbarProps {
   /**

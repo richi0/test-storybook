@@ -1,5 +1,4 @@
 import React from 'react'
-import './Link.css'
 import { PRIMARY, SECONDARY } from '../../globals'
 
 export interface LinkProps {

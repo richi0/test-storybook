@@ -1,5 +1,4 @@
 import React from 'react'
-import './SocialMediaBadge.css'
 import twitter from '../../static/images/twitter.svg'
 import facebook from '../../static/images/facebook.svg'
 import instagram from '../../static/images/instagram.svg'

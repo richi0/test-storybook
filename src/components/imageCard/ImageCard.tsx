@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './ImageCard.css'
 import { PRIMARY } from '../../globals'
 
 export interface ImageCardProps {

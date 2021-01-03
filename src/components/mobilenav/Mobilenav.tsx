@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './Mobilenav.css'
 import { Link, LinkProps } from '../link/Link'
 
 export interface MobilenavProps {

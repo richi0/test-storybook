@@ -1,5 +1,4 @@
 import React from 'react'
-import './HorizontalCard.css'
 import Button from '../button'
 import { PRIMARY } from '../../globals'
 

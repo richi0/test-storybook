@@ -1,5 +1,4 @@
 import React from 'react'
-import './TextCard.css'
 import { PRIMARY } from '../../globals'
 
 export interface TextCardProps {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { PRIMARY } from '../../globals'
-import './BurgerMenu.css'
+import styles from './BurgerMenu.module.css'
 
 export interface BurgerMenuProps {
   /**
@@ -12,7 +12,7 @@ export interface BurgerMenuProps {
 export const BurgerMenu: React.FC<BurgerMenuProps> = ({ onClick }) => {
   const [spin, setSpin] = useState('')
   const rotate = () => {
-    setSpin(spin ? '' : 'cc-BurgerMenu')
+    setSpin(spin ? '' : styles.menu)
     setTimeout(() => {
       setSpin('')
       onClick()
