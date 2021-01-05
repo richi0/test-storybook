@@ -16,7 +16,7 @@ export interface LinkProps {
   active?: boolean
 }
 
-export const Link: React.FC<LinkProps> = ({ href, text, active }) => {
+export const Link: React.FC<LinkProps> = ({ href, text, active=false }) => {
   return (
     <a
       href={href}

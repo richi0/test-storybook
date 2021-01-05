@@ -9,15 +9,15 @@ export default {
 
 const Template: Story<LinkProps> = (args) => <Link {...args} />
 
+export const Link_1 = Template.bind({})
+Link_1.args = {
+  href: '/',
+  text: 'This is a link',
+}
+
 export const ActiveLink = Template.bind({})
 ActiveLink.args = {
   href: '/',
   text: 'This link is active',
   active: true,
-}
-
-export const InactiveLink = Template.bind({})
-InactiveLink.args = {
-  href: '/',
-  text: 'This link is inactive',
 }
